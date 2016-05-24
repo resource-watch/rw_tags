@@ -1,0 +1,6 @@
+test:
+  adapter: postgresql
+  database: rw_tags_test
+  username: postgres
+  password:
+  port: 5433
