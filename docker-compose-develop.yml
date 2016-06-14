@@ -1,0 +1,19 @@
+web:
+  build: .
+  command: develop
+  volumes:
+    - .:/rw_tags
+  ports:
+    - '3025:3025'
+  links:
+    - postgres
+    - redis
+  env_file: dev.env
+
+postgres:
+  image: postgres
+  container_name: postgres_rw_tags
+
+redis:
+  image: redis
+  container_name: redis_rw_tags
