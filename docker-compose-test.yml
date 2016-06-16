@@ -8,4 +8,5 @@ test:
   env_file: test.env
 
 postgres:
-  image: postgres_rw_tags
+  image: postgres
+  container_name: postgres_rw_tags
