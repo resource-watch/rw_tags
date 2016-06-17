@@ -7,7 +7,7 @@
         "method": "GET",
         "endpoints": [{
             "method": "GET",
-            "baseUrl": "https://rw-tags.herokuapp.com",
+            "baseUrl": "http://192.168.99.100:3025",
             "path": "/tags"
         }]
       },
@@ -16,7 +16,7 @@
         "method": "GET",
         "endpoints": [{
             "method": "GET",
-            "baseUrl": "https://rw-tags.herokuapp.com",
+            "baseUrl": "http://192.168.99.100:3025",
             "path": "/tags/:id"
         }]
       },
@@ -25,7 +25,7 @@
         "method": "GET",
         "endpoints": [{
             "method": "GET",
-            "baseUrl": "https://rw-tags.herokuapp.com",
+            "baseUrl": "http://192.168.99.100:3025",
             "path": "/tags/:cat/:id"
         }]
       },
@@ -34,7 +34,7 @@
         "method": "POST",
         "endpoints": [{
             "method": "POST",
-            "baseUrl": "https://rw-tags.herokuapp.com",
+            "baseUrl": "http://192.168.99.100:3025",
             "path": "/tags"
         }]
       }
