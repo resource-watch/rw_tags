@@ -10,8 +10,6 @@ case "$1" in
         bundle exec rake db:exists RAILS_ENV=development
 
         export SECRET_KEY_BASE=$(rake secret)
-
-        rm -f tmp/pids/puma.pid
         exec ./server start develop
         ;;
     test)
@@ -32,8 +30,6 @@ case "$1" in
         bundle exec rake db:exists RAILS_ENV=production
 
         export SECRET_KEY_BASE=$(rake secret)
-
-        rm -f tmp/pids/puma.pid
         exec ./server start production
         ;;
     *)
