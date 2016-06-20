@@ -10,6 +10,7 @@ case "$1" in
         bundle exec rake db:exists RAILS_ENV=development
 
         export SECRET_KEY_BASE=$(rake secret)
+
         exec ./server start develop
         ;;
     test)
@@ -20,6 +21,7 @@ case "$1" in
         bundle exec rake db:exists RAILS_ENV=test
 
         export SECRET_KEY_BASE=$(rake secret)
+
         exec rspec
         ;;
     start)
@@ -30,8 +32,6 @@ case "$1" in
         bundle exec rake db:exists RAILS_ENV=production
 
         export SECRET_KEY_BASE=$(rake secret)
-        mkdir -p tmp/pids
-        mkdir log
 
         exec ./server start production
         ;;
