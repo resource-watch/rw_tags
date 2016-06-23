@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     get '/tags/:id',      to: 'tags#index'
     get '/tags/:cat/:id', to: 'tags#show',     constraints: TaggableConstraint
     get '/tags/:cat/:id', to: 'tags#taggable'
-    root                  to: 'tags#docs'
+
+    get '/info', to: 'tags#info'
+    root         to: 'tags#docs'
   end
 end

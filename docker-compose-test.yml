@@ -1,0 +1,12 @@
+test:
+  build: .
+  command: test
+  volumes:
+    - .:/rw_tags
+  links:
+    - postgres
+  env_file: test.env
+
+postgres:
+  image: postgres
+  container_name: postgres_rw_tags
