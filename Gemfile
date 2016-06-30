@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.0'
 
-gem 'rails', '>= 5.0.0.rc1', '< 5.1'
+gem 'rails', '>= 5.0.0.rc2', '< 5.1'
 
 gem 'pg', '~> 0.18'
 
@@ -46,3 +46,4 @@ gem 'rack-cors'
 gem 'rack-attack'
 gem 'bcrypt'
 gem 'sidekiq'
+gem 'newrelic_rpm'
