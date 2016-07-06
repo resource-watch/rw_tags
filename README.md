@@ -1,6 +1,6 @@
 # Resource Watch Tags Service
 
-[![Build Status](https://travis-ci.org/resource-watch/rw_tags.svg?branch=develop)](https://travis-ci.org/resource-watch/rw_tags) [![Code Climate](https://codeclimate.com/github/resource-watch/rw_tags/badges/gpa.svg)](https://codeclimate.com/github/resource-watch/rw_tags)
+[![Build Status](https://travis-ci.org/resource-watch/rw_tags.svg?branch=staging)](https://travis-ci.org/resource-watch/rw_tags) [![Code Climate](https://codeclimate.com/github/resource-watch/rw_tags/badges/gpa.svg)](https://codeclimate.com/github/resource-watch/rw_tags)
 
 TODO: Write a project description
 
