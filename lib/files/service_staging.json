@@ -1,6 +1,7 @@
 {
     "id": "rw_tags_v1",
     "name": "RW Tags v1",
+    "tags": ["rw"],
     "urls": [
       {
         "url": "/tags",
