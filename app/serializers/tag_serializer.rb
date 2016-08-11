@@ -8,7 +8,7 @@
 #  created_at     :datetime
 #
 
-class TagSerializer < ActiveModel::Serializer
+class TagSerializer < ApplicationSerializer
   attributes :id, :name, :taggings_count, :tagged_objects
 
   def tagged_objects
