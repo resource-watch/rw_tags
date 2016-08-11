@@ -10,7 +10,7 @@
 #  created_at    :datetime
 #
 
-class TaggingSerializer < ActiveModel::Serializer
+class TaggingSerializer < ApplicationSerializer
   attributes :id, :slug, :type, :tags
 
   def id

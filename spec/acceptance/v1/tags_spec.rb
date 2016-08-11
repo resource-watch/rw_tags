@@ -50,14 +50,14 @@ module V1
           get "/tags/find/#{tag_first.id}"
 
           expect(status).to       eq(200)
-          expect(json['name']).to eq('tag1')
+          expect(json['attributes']['name']).to eq('tag1')
         end
 
         it 'Show tag by name' do
           get "/tags/find/#{tag_first.name}"
 
           expect(status).to       eq(200)
-          expect(json['name']).to eq('tag1')
+          expect(json['attributes']['name']).to eq('tag1')
         end
       end
 
@@ -66,16 +66,16 @@ module V1
           get '/tags/datasets/c547146d-de0c-47ff-a406-5125667fd533'
 
           expect(status).to              eq(200)
-          expect(json['slug']).to        eq('dataset-first')
-          expect(json['tags'].length).to eq(3)
+          expect(json['attributes']['slug']).to        eq('dataset-first')
+          expect(json['attributes']['tags'].length).to eq(3)
         end
 
         it 'Show widget by slug and list tags' do
           get '/tags/widgets/c547146d-de0c-47ff-a406-5125667fd555'
 
           expect(status).to              eq(200)
-          expect(json['slug']).to        eq('widget-first')
-          expect(json['tags'].length).to eq(1)
+          expect(json['attributes']['slug']).to        eq('widget-first')
+          expect(json['attributes']['tags'].length).to eq(1)
         end
       end
 
