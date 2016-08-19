@@ -14,15 +14,15 @@ class TaggingSerializer < ApplicationSerializer
   attributes :id, :slug, :type, :tags
 
   def id
-    object.taggable_id
+    object.try(:taggable_id)
   end
 
   def slug
-    object.taggable_slug
+    object.try(:taggable_slug)
   end
 
   def type
-    object.taggable_type
+    object.try(:taggable_type)
   end
 
   def tags

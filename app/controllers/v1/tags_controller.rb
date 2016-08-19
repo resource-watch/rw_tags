@@ -1,6 +1,5 @@
 module V1
   class TagsController < ApplicationController
-    before_action :basic_auth,   only: :create
     before_action :set_tag,      only: :show
     before_action :set_taggable, only: :taggable
 
@@ -14,7 +13,11 @@ module V1
     end
 
     def taggable
-      render json: @taggable, serializer: TaggingSerializer, root: false
+      if @taggable.present?
+        render json: @taggable, serializer: TaggingSerializer, root: false
+      else
+        render json: { errors: [{ status: 404, title: 'Taggable not found' }] }, status: 404
+      end
     end
 
     def create
