@@ -31,9 +31,9 @@ RSpec.describe Tag, type: :model do
 
   it 'Save tags as downcase and unique' do
     expect(tags.length).to     be(3)
-    expect(tag_first.name).to  eq('tag1')
-    expect(tag_second.name).to eq('tag2')
-    expect(tag_third.name).to  eq('tag3')
+    expect(tag_first.name).to  eq('tag3')
+    expect(tag_second.name).to eq('tag1')
+    expect(tag_third.name).to  eq('tag2')
   end
 
   it 'Do not allow to create tag without name' do
