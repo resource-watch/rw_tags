@@ -3,14 +3,14 @@ require 'acceptance_helper'
 module V1
   describe 'Tags', type: :request do
     context 'Create, show and list tags' do
-      let!(:tags_list_1) { { "tags_list"=>["tag1", "tag2", "Tag2", "Tag3"],
-                             "taggable_type"=>"Dataset",
-                             "taggable_id"=>"c547146d-de0c-47ff-a406-5125667fd533",
-                             "taggable_slug"=>"dataset-first" } }
-      let!(:tags_list_2) { { "tags_list"=>["tag3"],
-                             "taggable_type"=>"Widget",
-                             "taggable_id"=>"c547146d-de0c-47ff-a406-5125667fd555",
-                             "taggable_slug"=>"widget-first" } }
+      let!(:tags_list_1) { { "tags_list"     => ["tag1", "tag2", "Tag2", "Tag3"],
+                             "taggable_type" => "Dataset",
+                             "taggable_id"   => "c547146d-de0c-47ff-a406-5125667fd533",
+                             "taggable_slug" => "dataset-first" } }
+      let!(:tags_list_2) { { "tags_list"     => ["tag3"],
+                             "taggable_type" => "Widget",
+                             "taggable_id"   => "c547146d-de0c-47ff-a406-5125667fd555",
+                             "taggable_slug" => "widget-first" } }
 
       let!(:tags) {
         Tag.find_or_create_by_name(tags_list_1)

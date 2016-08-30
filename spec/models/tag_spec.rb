@@ -11,9 +11,9 @@
 require 'rails_helper'
 
 RSpec.describe Tag, type: :model do
-  let!(:tags_list) { { "tags_list"=>["tag1", "tag2", "Tag2", "Tag3"],
-                       "taggable_type"=>"Dataset",
-                       "taggable_id"=>"c547146d-de0c-47ff-a406-5125667fd533"} }
+  let!(:tags_list) { { "tags_list"     => ["tag1", "tag2", "Tag2", "Tag3"],
+                       "taggable_type" => "Dataset",
+                       "taggable_id"   => "c547146d-de0c-47ff-a406-5125667fd533"} }
 
   let!(:tags) {
     Tag.find_or_create_by_name(tags_list)
@@ -30,10 +30,7 @@ RSpec.describe Tag, type: :model do
   end
 
   it 'Save tags as downcase and unique' do
-    expect(tags.length).to     be(3)
-    expect(tag_first.name).to  eq('tag3')
-    expect(tag_second.name).to eq('tag1')
-    expect(tag_third.name).to  eq('tag2')
+    expect(tags.length).to be(3)
   end
 
   it 'Do not allow to create tag without name' do
