@@ -66,6 +66,13 @@ module V1
           expect(status).to eq(200)
           expect(json['attributes']['name']).to eq('topic second')
         end
+
+        it 'Show 404 if topic not found' do
+          get "/topics/find/topicsecond"
+
+          expect(status).to eq(404)
+          expect(json_main['errors']).to eq([{"status"=>404, "title"=>"Record not found"}])
+        end
       end
 
       context 'Show specific topicable' do

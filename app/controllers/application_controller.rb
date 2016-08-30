@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::API
-  include ActionController::HttpAuthentication::Basic::ControllerMethods
-
   rescue_from Exception do |e|
     error(e)
   end

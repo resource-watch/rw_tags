@@ -37,6 +37,7 @@ module V1
 
       def set_tag
         @tag = Tag.find_by_id_or_name(params[:id])
+        render json: { errors: [{ status: 404, title: 'Record not found' }] }, status: 404 if @tag.nil?
       end
 
       def set_taggable

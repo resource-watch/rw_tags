@@ -66,6 +66,13 @@ module V1
           expect(status).to eq(200)
           expect(json['attributes']['name']).to eq('tag second')
         end
+
+        it 'Show 404 if tag not found' do
+          get "/tags/find/tagsecond"
+
+          expect(status).to eq(404)
+          expect(json_main['errors']).to eq([{"status"=>404, "title"=>"Record not found"}])
+        end
       end
 
       context 'Show specific taggable' do

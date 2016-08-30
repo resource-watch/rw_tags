@@ -37,6 +37,7 @@ module V1
 
       def set_topic
         @topic = Topic.find_by_id_or_name(params[:id])
+        render json: { errors: [{ status: 404, title: 'Record not found' }] }, status: 404 if @topic.nil?
       end
 
       def set_topicable
