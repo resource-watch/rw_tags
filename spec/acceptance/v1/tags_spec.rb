@@ -3,7 +3,7 @@ require 'acceptance_helper'
 module V1
   describe 'Tags', type: :request do
     context 'Create, show and list tags' do
-      let!(:tags_list_1) { { "tags_list"     => ["tag1", "tag2", "Tag2", "Tag3"],
+      let!(:tags_list_1) { { "tags_list"     => ["tag1", "tag second", "Tag second", "Tag3"],
                              "taggable_type" => "Dataset",
                              "taggable_id"   => "c547146d-de0c-47ff-a406-5125667fd533",
                              "taggable_slug" => "dataset-first" } }
@@ -18,9 +18,9 @@ module V1
         tags = Tag.all
       }
 
-      let!(:tag_first)  { tags[0] }
-      let!(:tag_second) { tags[1] }
-      let!(:tag_third)  { tags[2] }
+      let!(:tag_first)  { tags.find_by(name: 'tag1')       }
+      let!(:tag_second) { tags.find_by(name: 'tag second') }
+      let!(:tag_third)  { tags.find_by(name: 'tag3')       }
 
       context 'List tags' do
         it 'Show list of all tags' do
@@ -58,6 +58,13 @@ module V1
 
           expect(status).to eq(200)
           expect(json['attributes']['name']).to eq('tag1')
+        end
+
+        it 'Show tag by whitespaced name' do
+          get "/tags/find/tag%20second"
+
+          expect(status).to eq(200)
+          expect(json['attributes']['name']).to eq('tag second')
         end
       end
 

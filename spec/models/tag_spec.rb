@@ -20,9 +20,9 @@ RSpec.describe Tag, type: :model do
     tags = Tag.all
   }
 
-  let!(:tag_first)  { tags[0] }
-  let!(:tag_second) { tags[1] }
-  let!(:tag_third)  { tags[2] }
+  let!(:tag_first)  { tags.find_by(name: 'tag1') }
+  let!(:tag_second) { tags.find_by(name: 'tag2') }
+  let!(:tag_third)  { tags.find_by(name: 'tag3') }
 
   it 'Is valid' do
     expect(tag_first).to      be_valid

@@ -11,7 +11,7 @@
 require 'rails_helper'
 
 RSpec.describe Topic, type: :model do
-  let!(:topics_list) { { "topics_list"    => ["topic1", "topic2", "Topic2", "Topic3"],
+  let!(:topics_list) { { "topics_list"    => ["topic1", "topic second", "Topic second", "Topic3"],
                          "topicable_type" => "Dataset",
                          "topicable_id"   => "c547146d-de0c-47ff-a406-5125667fd533"} }
 
@@ -20,9 +20,9 @@ RSpec.describe Topic, type: :model do
     topics = Topic.all
   }
 
-  let!(:topic_first)  { topics[0] }
-  let!(:topic_second) { topics[1] }
-  let!(:topic_third)  { topics[2] }
+  let!(:topic_first)  { topics.find_by(name: 'topic1')       }
+  let!(:topic_second) { topics.find_by(name: 'topic second') }
+  let!(:topic_third)  { topics.find_by(name: 'topic3')       }
 
   it 'Is valid' do
     expect(topic_first).to      be_valid

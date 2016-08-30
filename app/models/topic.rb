@@ -19,8 +19,8 @@ class Topic < ApplicationRecord
 
   class << self
     def find_by_id_or_name(param)
-      topic_id = where(name: param).or(where(id: param)).pluck(:id).min
-      find(topic_id) rescue nil
+      topic_id = where(name: URI.decode(param)).or(where(id: param)).pluck(:id).min
+      find(topic_id) if topic_id.present?
     end
 
     def fetch_all(options)
@@ -63,12 +63,12 @@ class Topic < ApplicationRecord
     types.uniq.map do |topicable|
       base_path      = "#{ENV['API_GATEWAY_URL']}/#{topicable.downcase.parameterize.pluralize}"
       topicable_info = topicables.filter_by_type(topicable.classify).map do |topicable|
-                       { id:         topicable.topicable_id,
-                         slug:       topicable.topicable_slug,
-                         type:       topicable.topicable_type,
-                         uri:        "#{base_path}/#{topicable.topicable_id}",
-                         created_at: topicable.created_at }
-                     end
+                         { id:         topicable.topicable_id,
+                           slug:       topicable.topicable_slug,
+                           type:       topicable.topicable_type,
+                           uri:        "#{base_path}/#{topicable.topicable_id}",
+                           created_at: topicable.created_at }
+                       end
 
       { :"#{topicable.downcase.parameterize.pluralize}" => topicable_info }
     end

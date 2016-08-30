@@ -3,7 +3,7 @@ require 'acceptance_helper'
 module V1
   describe 'Topics', type: :request do
     context 'Create, show and list topics' do
-      let!(:topics_list_1) { { "topics_list"    => ["topic1", "topic2", "Topic2", "Topic3"],
+      let!(:topics_list_1) { { "topics_list"    => ["topic1", "topic second", "Topic second", "Topic3"],
                                "topicable_type" => "Dataset",
                                "topicable_id"   => "c547146d-de0c-47ff-a406-5125667fd533",
                                "topicable_slug" => "dataset-first" } }
@@ -18,9 +18,9 @@ module V1
         topics = Topic.all
       }
 
-      let!(:topic_first)  { topics[0] }
-      let!(:topic_second) { topics[1] }
-      let!(:topic_third)  { topics[2] }
+      let!(:topic_first)  { topics.find_by(name: 'topic1')       }
+      let!(:topic_second) { topics.find_by(name: 'topic second') }
+      let!(:topic_third)  { topics.find_by(name: 'topic3')       }
 
       context 'List topics' do
         it 'Show list of all topics' do
@@ -58,6 +58,13 @@ module V1
 
           expect(status).to eq(200)
           expect(json['attributes']['name']).to eq('topic1')
+        end
+
+        it 'Show topic by whitespaced name' do
+          get "/topics/find/topic%20second"
+
+          expect(status).to eq(200)
+          expect(json['attributes']['name']).to eq('topic second')
         end
       end
 

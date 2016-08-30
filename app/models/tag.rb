@@ -19,8 +19,8 @@ class Tag < ApplicationRecord
 
   class << self
     def find_by_id_or_name(param)
-      tag_id = where(name: param).or(where(id: param)).pluck(:id).min
-      find(tag_id) rescue nil
+      tag_id = where(name: URI.decode(param)).or(where(id: param)).pluck(:id).min
+      find(tag_id) if tag_id.present?
     end
 
     def fetch_all(options)
