@@ -13,17 +13,17 @@
 require 'rails_helper'
 
 RSpec.describe Tagging, type: :model do
-  let!(:tags_list_1) { { "tags_list"=>["tag1", "tag2", "Tag2"],
-                         "taggable_type"=>"Dataset",
-                         "taggable_id"=>"c547146d-de0c-47ff-a406-5125667fd533"} }
+  let!(:tags_list_1) { { "tags_list"     => ["tag1", "tag2", "Tag2"],
+                         "taggable_type" => "Dataset",
+                         "taggable_id"   => "c547146d-de0c-47ff-a406-5125667fd533"} }
 
-  let!(:tags_list_2) { { "tags_list"=>["tag1", "tag2", "Tag3"],
-                         "taggable_type"=>"Dataset",
-                         "taggable_id"=>"c547146d-de0c-47ff-a406-5125667fd534"} }
+  let!(:tags_list_2) { { "tags_list"     => ["tag1", "tag2", "Tag3"],
+                         "taggable_type" => "Dataset",
+                         "taggable_id"   => "c547146d-de0c-47ff-a406-5125667fd534"} }
 
-  let(:tags_list_3)  { { "tags_list"=>["tag1", "tag2"],
-                         "taggable_type"=>"Dataset",
-                         "taggable_id"=>"c547146d-de0c-47ff-a406-5125667fd534"} }
+  let(:tags_list_3)  { { "tags_list"     => ["tag1", "tag2"],
+                         "taggable_type" => "Dataset",
+                         "taggable_id"   => "c547146d-de0c-47ff-a406-5125667fd534"} }
 
   let!(:taggings) {
     Tag.find_or_create_by_name(tags_list_1)

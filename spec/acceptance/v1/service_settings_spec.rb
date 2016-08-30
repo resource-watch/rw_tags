@@ -27,7 +27,7 @@ module V1
     end
 
     context 'For missing params' do
-      it 'Allows to create service token and gateway url' do
+      it 'Do not create service without token and gateway url' do
         get "/info"
 
         expect(status).to eq(422)
