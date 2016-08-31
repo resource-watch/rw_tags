@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616102951) do
+ActiveRecord::Schema.define(version: 20160830092545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,24 @@ ActiveRecord::Schema.define(version: 20160616102951) do
     t.integer  "taggings_count", default: 0
     t.datetime "created_at"
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
+  end
+
+  create_table "topicables", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "topic_id"
+    t.uuid     "topicable_id"
+    t.string   "topicable_type"
+    t.string   "topicable_slug"
+    t.datetime "created_at"
+    t.index ["topic_id", "topicable_id", "topicable_type"], name: "topicables_index", unique: true, using: :btree
+    t.index ["topic_id", "topicable_slug", "topicable_type"], name: "topicables_slug_index", unique: true, using: :btree
+    t.index ["topicable_id", "topicable_type"], name: "index_topicables_on_topicable_id_and_topicable_type", using: :btree
+  end
+
+  create_table "topics", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string   "name"
+    t.integer  "topicables_count", default: 0
+    t.datetime "created_at"
+    t.index ["name"], name: "index_topics_on_name", unique: true, using: :btree
   end
 
 end
