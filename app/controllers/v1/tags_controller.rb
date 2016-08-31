@@ -14,7 +14,7 @@ module V1
 
     def taggable
       if @taggable.present?
-        render json: @taggable, serializer: TaggingSerializer, root: false
+        render json: @taggable, serializer: TaggingTopicableSerializer, root: false
       else
         render json: { errors: [{ status: 404, title: 'Taggable not found' }] }, status: 404
       end
@@ -29,29 +29,15 @@ module V1
       end
     end
 
-    def docs
-      @docs = YAML.load(File.read('lib/files/swagger.yml')).to_json
-      render json: @docs
-    end
-
-    def info
-      @service = ServiceSetting.save_gateway_settings(params)
-      if @service
-        @docs = Oj.load(File.read("lib/files/service_#{ENV['RAILS_ENV']}.json"))
-        render json: @docs
-      else
-        render json: { success: false, message: 'Missing url and token params' }, status: 422
-      end
-    end
-
     private
 
       def tag_type_filter
-        params.permit(:id)
+        params.permit(:id, tag: {})
       end
 
       def set_tag
         @tag = Tag.find_by_id_or_name(params[:id])
+        render json: { errors: [{ status: 404, title: 'Record not found' }] }, status: 404 if @tag.nil?
       end
 
       def set_taggable
