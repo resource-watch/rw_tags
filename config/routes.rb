@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get '/topics/:cat/:id', to: 'topics#topicable'
 
     get '/info', to: 'info#info'
+    get '/ping', to: 'info#ping'
     root         to: 'info#docs'
   end
 end
