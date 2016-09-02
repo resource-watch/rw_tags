@@ -14,5 +14,9 @@ module V1
         render json: { success: false, message: 'Missing url and token params' }, status: 422
       end
     end
+
+    def ping
+      render json: { success: true, message: 'RW Tags online' }, status: 200
+    end
   end
 end
