@@ -4,6 +4,15 @@
     "tags": ["rw"],
     "urls": [
       {
+        "url": "/ping",
+        "method": "GET",
+        "endpoints": [{
+            "method": "GET",
+            "baseUrl": "http://localhost:3025",
+            "path": "/ping"
+        }]
+      },
+      {
         "url": "/tags",
         "method": "GET",
         "endpoints": [{
@@ -37,6 +46,42 @@
             "method": "POST",
             "baseUrl": "http://localhost:3025",
             "path": "/tags"
+        }]
+      },
+      {
+        "url": "/topics",
+        "method": "GET",
+        "endpoints": [{
+            "method": "GET",
+            "baseUrl": "http://localhost:3025",
+            "path": "/topics"
+        }]
+      },
+      {
+        "url": "/topics/:id",
+        "method": "GET",
+        "endpoints": [{
+            "method": "GET",
+            "baseUrl": "http://localhost:3025",
+            "path": "/topics/:id"
+        }]
+      },
+      {
+        "url": "/topics/:cat/:id",
+        "method": "GET",
+        "endpoints": [{
+            "method": "GET",
+            "baseUrl": "http://localhost:3025",
+            "path": "/topics/:cat/:id"
+        }]
+      },
+      {
+        "url": "/topics",
+        "method": "POST",
+        "endpoints": [{
+            "method": "POST",
+            "baseUrl": "http://localhost:3025",
+            "path": "/topics"
         }]
       }
     ],
@@ -185,6 +230,137 @@
               }
             }
           }
+        },
+        "/topics": {
+          "get": {
+            "description": "Returns all topics",
+            "produces": [
+              "application/json"
+            ],
+            "topics": [
+              "Topics"
+            ],
+            "responses": {
+              "200": {
+                "description": "Topics obtained",
+                "schema": {
+                  "$ref": "#/definitions/Topics"
+                }
+              },
+              "500": {
+                "description": "Unexpected error",
+                "schema": {
+                  "$ref": "#/definitions/Error"
+                }
+              },
+              "default": {
+                "description": "unexpected error",
+                "schema": {
+                  "$ref": "#/definitions/Error"
+                }
+              }
+            }
+          },
+          "post": {
+            "summary": "Create topics",
+            "description": "Create topic",
+            "produces": [
+              "application/json"
+            ],
+            "topics": [
+              "Topics"
+            ],
+            "parameters": [
+              {
+                "name": "topic",
+                "in": "body",
+                "description": "Topics to save",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/TopicsCreate"
+                }
+              }
+            ],
+            "responses": {
+              "201": {
+                "description": "The object created",
+                "schema": {
+                  "$ref": "#/definitions/CreatedMessage"
+                }
+              },
+              "400": {
+                "description": "Validate error",
+                "schema": {
+                  "$ref": "#/definitions/Error"
+                }
+              },
+              "500": {
+                "description": "Unexpected error",
+                "schema": {
+                  "$ref": "#/definitions/Error"
+                }
+              },
+              "default": {
+                "description": "Unexpected error",
+                "schema": {
+                  "$ref": "#/definitions/Error"
+                }
+              }
+            }
+          }
+        },
+        "/topics/{cat}/{id}": {
+          "get": {
+            "description": "Returns topics for specific topicgable type (datasets, widgets etc..)",
+            "produces": [
+              "application/json"
+            ],
+            "topics": [
+              "Topics"
+            ],
+            "parameters": [
+              {
+                "name": "cat",
+                "in": "path",
+                "required": true,
+                "description": "Show a specific topicgable type (datasets, widgets etc..) followed by topicgable_id or use find followed by topic id or slug to show a specific topic",
+                "type": "string"
+              },
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "Filter topics on topicgable type (datasets, widgets etc..)",
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Topics obtained",
+                "schema": {
+                  "$ref": "#/definitions/Topics"
+                }
+              },
+              "404": {
+                "description": "Topics not found",
+                "schema": {
+                  "$ref": "#/definitions/Error"
+                }
+              },
+              "500": {
+                "description": "Unexpected error",
+                "schema": {
+                  "$ref": "#/definitions/Error"
+                }
+              },
+              "default": {
+                "description": "unexpected error",
+                "schema": {
+                  "$ref": "#/definitions/Error"
+                }
+              }
+            }
+          }
         }
       },
       "definitions": {
@@ -235,6 +411,56 @@
             "taggings_count": {
               "type": "integer",
               "description": "Tagging count"
+            }
+          }
+        },
+        "TopicsCreate": {
+          "type": "object",
+          "properties": {
+            "tag": {
+              "type": "object",
+              "properties": {
+                "topicable_slug": {
+                  "type": "string",
+                  "description": "Slug of topicable object"
+                },
+                "taggabñe_type": {
+                  "type": "string",
+                  "description": "Model name of topicable object"
+                },
+                "taggabñe_id": {
+                  "type": "string",
+                  "description": "UUID of topicable object"
+                },
+                "tags_list": {
+                  "type": "object",
+                  "description": "Topic names - sample - ['tag1','tag2']"
+                }
+              }
+            }
+          }
+        },
+        "Topics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TopicsArray"
+          }
+        },
+        "TopicsArray": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "UUID",
+              "description": "Topics id"
+            },
+            "name": {
+              "type": "string",
+              "description": "Topic name"
+            },
+            "taggings_count": {
+              "type": "integer",
+              "description": "Topicging count"
             }
           }
         },
