@@ -3,15 +3,6 @@
     "name": "RW Tags v1",
     "urls": [
       {
-        "url": "/ping",
-        "method": "GET",
-        "endpoints": [{
-            "method": "GET",
-            "baseUrl": "http://192.168.99.100:3025",
-            "path": "/ping"
-        }]
-      },
-      {
         "url": "/tags",
         "method": "GET",
         "endpoints": [{
