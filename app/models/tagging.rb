@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: taggings
@@ -27,7 +28,7 @@ class Tagging < ApplicationRecord
     end
 
     def tags_by_taggable(taggable_id)
-      taggings = where(taggable_id: taggable_id)
+      taggings = includes(:tag).where(taggable_id: taggable_id)
       taggings = taggings.map { |t| t.tag.name }.uniq
       taggings
     end

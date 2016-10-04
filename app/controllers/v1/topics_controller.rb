@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module V1
   class TopicsController < ApplicationController
     before_action :set_topic,     only: :show
