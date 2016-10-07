@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: topicables
@@ -27,7 +28,7 @@ class Topicable < ApplicationRecord
     end
 
     def topics_by_topicable(topicable_id)
-      topicables = where(topicable_id: topicable_id)
+      topicables = includes(:topic).where(topicable_id: topicable_id)
       topicables = topicables.map { |t| t.topic.name }.uniq
       topicables
     end
