@@ -33,6 +33,7 @@
       {
         "url": "/tags",
         "method": "POST",
+        "authenticated": true,
         "endpoints": [{
             "method": "POST",
             "baseUrl": "http://localhost:3025",
@@ -69,6 +70,7 @@
       {
         "url": "/topics",
         "method": "POST",
+        "authenticated": true,
         "endpoints": [{
             "method": "POST",
             "baseUrl": "http://localhost:3025",
