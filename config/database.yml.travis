@@ -3,4 +3,4 @@ test:
   database: rw_tags_test
   username: postgres
   password:
-  port: 5433
+  port: 5432
